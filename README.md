@@ -22,7 +22,7 @@ The initial temperature is set to T = 0.
 ### Spatial discretization
 The problem is solved numerically using the finite element method (FEM). To discretizate we first define the space of possible solutions (also known as a trial space) $$\mathcal{U}$$, so that $T \in \mathcal{U}$. Next we multiply by a test function $v \in \mathcal{V}$, where is $\mathcal{V}$ is the space of test functions (the so-called test space), and integratinging over the domain. This leads to the time-continuous weak formulation of the problem: Find $$T \in \mathcal{U}$$ such that:
 
-$$ \left(v, \frac{\partial T}{\partial t} \right)_{\Omega} = -\alpha \left(\frac{\partial v}{\partial x}, \frac{\partial u}{\partial x} \right)_{\Omega} - \beta \left( v, \frac{\partial u}{\partial x} \right)_{\Omega} - \gamma \left(v, u \right) + \left(v, q \right)_{\Omega}.$$
+$$ \left(v, \frac{\partial T}{\partial t} \right)_{\Omega} = -\alpha \left(\frac{\partial v}{\partial x}, \frac{\partial u}{\partial x} \right)_{\Omega} - \beta \left( v, \frac{\partial u}{\partial x} \right)_{\Omega} - \gamma \left(v, u \right) + \left(v, q \right)_{\Omega}$$.
 Here the notation $$ \left( \cdot, \cdot \right) = \int_{\Omega} \cdot d \Omega $$ is used to denote an inner product.
 
 With the weak form in place, the finite element discretization can now be performed by restricting trial- and test spaces to functions that are piecewise polynomial over each element of the domain, which we denote by $$\mathcal{U}_h$$ and $$\mathcal{V}_h$$, respectively. To discretize we make use of the fact that any function $$u \in \mathcal{U}_h$$ can be written as a linear combination $$T(x, t) = \sum_{j=1}^{n} u_j(t) \varphi_j(x)$$, and consequently its spatial derivative is $$\frac{\partial T}{\partial x} = u_j(t) \frac{d \varphi}{dx}$$. Here $$\varphi_j$$ is a polynomial of arbitrary order centered on the node with index $$j$$. Inserting the expression for $$T$$ into the above weak form and letting $$v = \varphi_i(x)$$, we for each $$i \in \{1,...,n\}$$ obtain the following ordinary differential equations:
@@ -31,7 +31,8 @@ $$\sum_{j=1}^{n} \frac{d u_j}{dt} (\varphi_i, \varphi_j) = -\alpha \sum_{j=1}^{n
 
 This system can be written more compactly in terms vectors and matrices:
 
-$$M\frac{d\mathbf{u}}{dt} = -\alpha A \mathbf{u} - \beta S \mathbf{u} - \gamma M \mathbf{u} + \mathbf{f},$$
+$$M\frac{d\mathbf{u}}{dt} = -\alpha A \mathbf{u} - \beta S \mathbf{u} - \gamma M \mathbf{u} + \mathbf{f}$$,
+
 where $M$ is the mass matrix, A the stiffness matrix, S is a mixed matrix and $\mathbf{f}$ the load vector.
 
 ### Temporal discretization
