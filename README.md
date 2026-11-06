@@ -11,7 +11,7 @@ https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
 ## Software and libraries used
 * Gnu Scientific Library for dense linear algebra
 * Suitesparse for sparse linear algebra
-* cJSON for reading configuration files
+* cJSON for reading the configuration file
 * matplotlib for generating colormaps
 
 ## The model
