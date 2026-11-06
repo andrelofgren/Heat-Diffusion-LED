@@ -3,8 +3,16 @@ Model heat diffusion on thin rod in real time on addressable RGBs.
 
 ## Demonstration
 Below is a couple of simulations using colormaps from matplotlib displayed on addressable RGBs.
+
 Gnuplot:
+
 https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
+
+## Software and libraries used
+* Gnu Scientific Library for dense linear algebra
+* Suitesparse for sparse linear algebra
+* cJSON for reading configuration files
+* matplotlib for generating colormaps
 
 ## The model
 The heat conduction is modeled using the one dimensional heat equation to solve for the temperature $$T$$, on the domain $$\Omega = [0, L]$$:
@@ -26,7 +34,15 @@ $$ \left(v, \frac{\partial T}{\partial x} \right)_{\Omega} =$$
 
 Here the notation $$ \left( \cdot, \cdot \right) = \int_{\Omega} \cdot d \Omega $$ is used to denote an inner product.
 
-With the weak form in place, the finite element discretization can now be performed by restricting trial- and test spaces to functions that are piecewise polynomial over each element of the domain, which we denote by $$\mathcal{U}_h$$ and $$\mathcal{V}_h$$, respectively. To discretize we make use of the fact that any function $$u \in \mathcal{U}_h$$ can be written as a linear combination $$T(x, t) = \sum_{j=1}^{n} u_j(t) \varphi_j(x)$$, and consequently its spatial derivative is $$\frac{\partial T}{\partial x} = u_j(t) \frac{d \varphi}{dx}$$. Here $$\varphi_j$$ is a polynomial of arbitrary order centered on the node with index $$j$$. Inserting the expression for $$T$$ into the above weak form and letting $$v = \varphi_i(x)$$, we for each $$i \in \{1,...,n\}$$ obtain the following ordinary differential equations:
+With the weak form in place, the finite element discretization can now be performed by restricting trial- and test spaces to functions that are piecewise polynomial over each element of the domain, which we denote by $$\mathcal{U}_h$$ and $$\mathcal{V}_h$$, respectively. To discretize we make use of the fact that any function $$u \in \mathcal{U}_h$$ can be written as a linear combination
+
+$$T(x, t) = \sum_{j=1}^{n} u_j(t) \varphi_j(x)$$,
+
+and consequently its spatial derivative is
+
+$$\frac{\partial T}{\partial x} = u_j(t) \frac{d \varphi}{dx}$$.
+
+Here $$\varphi_j$$ is a polynomial of arbitrary order centered on the node with index $$j$$. Inserting the expression for $$T$$ into the above weak form and letting $$v = \varphi_i(x)$$, we for each $$i \in \{1,...,n\}$$ obtain the following ordinary differential equations:
 
 $$\sum_{j=1}^{n} \frac{d u_j}{dt} (\varphi_i, \varphi_j) = -\alpha \sum_{j=1}^{n} \left(\frac{\varphi_i}{dx}, \frac{\varphi_j}{dx} \right)$$
 
