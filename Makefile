@@ -1,6 +1,4 @@
 CC=cc
-INCLUDE_DIRS=-I/home/user/opt/hpc-env/include
-LIB_DIRS=-L/home/user/opt/hpc-env/lib64 -L/home/user/opt/hpc-env/lib
 CFLAGS=-O2 -flto -Wall
 LDFLAGS=-O2 -flto -lm -lopenblas -lgsl -lcxsparse -lklu -lcjson
 
