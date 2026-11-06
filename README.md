@@ -30,8 +30,9 @@ With the weak form in place, the finite element discretization can now be perfor
 $$\sum_{j=1}^{n} \frac{d u_j}{dt} (\varphi_i, \varphi_j) = -\alpha \sum_{j=1}^{n} \left(\frac{\varphi_i}{dx}, \frac{\varphi_j}{dx} \right)$$
 
 This system can be written more compactly in terms vectors and matrices:
-$$M\frac{d\mathbf{u}}{dt} = -\alpha A \mathbf{u} - \beta S \mathbf{u} - \gamma M \mathbf{u} + \mathbf{f}.$$
-Here $M$ is the mass matrix, A the stiffness matrix, S is a mixed matrix and $\mathbf{f}$ the load vector.
+
+$$M\frac{d\mathbf{u}}{dt} = -\alpha A \mathbf{u} - \beta S \mathbf{u} - \gamma M \mathbf{u} + \mathbf{f},$$
+where $M$ is the mass matrix, A the stiffness matrix, S is a mixed matrix and $\mathbf{f}$ the load vector.
 
 ### Temporal discretization
 To discretize in time we use the Crank-Nicolson discretization which for the problem is unconditionally stable and second order accurate w.r.t. to the time-step size $$\Delta t$$.
