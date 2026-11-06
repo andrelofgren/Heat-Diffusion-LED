@@ -22,9 +22,9 @@ The initial temperature is set to T = 0.
 ### Spatial discretization
 The problem is solved numerically using the finite element method (FEM). To discretizate we first define the space of possible solutions (also known as a trial space) $$\mathcal{U}$$, so that $T \in \mathcal{U}$. Next we multiply by a test function $v \in \mathcal{V}$, where is $\mathcal{V}$ is the space of test functions (the so-called test space), and integratinging over the domain. This leads to the time-continuous weak formulation of the problem: Find $$T \in \mathcal{U}$$ such that:
 
-$$ \left (v, \frac{\partial T}{\partial t} \right )_{\Omega} = -\alpha (\frac{\partial v}{\partial x}, \frac{\partial u}{\partial x} \right)_{\Omega} - \beta (v, \frac{\partial u}{\partial x}) \right)_{\Omega} - \gamma $(v, u) + \left (v, q \right )_{\Omega}.$$
+$$ \left (v, \frac{\partial T}{\partial t} \right )_{\Omega} = -\alpha \left (\frac{\partial v}{\partial x}, \frac{\partial u}{\partial x} \right)_{\Omega} - \beta (v, \frac{\partial u}{\partial x}) \right)_{\Omega} - \gamma $(v, u) + \left (v, q \right )_{\Omega}.$$
 
-Here the notation $$ \left( \cdot, \cdot \left) = \int_{\Omega} \cdot d \Omega $$ is used to denote an inner product.
+Here the notation $$ \left( \cdot, \cdot \right) = \int_{\Omega} \cdot d \Omega $$ is used to denote an inner product.
 
 With the weak form set up, we perform a discretization by restricting test and trial spaces to functions that are piece wise polynomial over each element of the domain.
 
