@@ -45,7 +45,7 @@ and consequently its spatial derivative is
 
 $$\frac{\partial T}{\partial x} = \sum_{j=1}^{n} u_j(t) \frac{d \varphi}{dx}$$.
 
-Here $$\varphi_j$$ is a polynomial of arbitrary order centered on the node with index $$j$$, shown in Fig. (2) below.
+Here $$\varphi_j$$ is a polynomial of arbitrary order centered on the node with index $$j$$. Order 1 and order 2 polynomials are shown in the figure below.
 
 ![Some text](assets/lagrange_basis.png)
 
