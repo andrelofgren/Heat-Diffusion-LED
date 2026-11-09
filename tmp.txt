@@ -1,0 +1,1 @@
+$$ \left(v, \frac{\partial T}{\partial t} \right)_{\Omega} = -\alpha \left(\frac{\partial v}{\partial x}, \frac{\partial u}{\partial x} \right)_{\Omega} - \beta \left( v, \frac{\partial u}{\partial x} \right)_{\Omega} - \gamma \left(v, u \right) + \left(v, q \right)_{\Omega}$$.
