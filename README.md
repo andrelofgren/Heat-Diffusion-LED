@@ -1,4 +1,3 @@
-$$M\frac{\mathbf{u}^{k+1} - \mathbf{u}^{k}}{\Delta t} = -\alpha A \frac{\mathbf{u}^{k+1} + \mathbf{u}^{k}}{2} - \beta S \frac{\mathbf{u}^{k+1} + \mathbf{u}^{k}}{2} - \gamma M \frac{\mathbf{u}^{k+1} + \mathbf{u}^{k}}{2} + \frac{\mathbf{f}^{k+1} + \mathbf{f}^k}{2}$$,
 # Heat-Diffusion-LED
 
 Model heat diffusion on thin rod in real time on addressable RGBs.
@@ -14,14 +13,6 @@ https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
 
 Jet:
 https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
-
-## Software and libraries used
-* Gnu Scientific Library for dense linear algebra
-* Suitesparse for sparse linear algebra
-* cJSON for parsing the configuration file
-
-## License
-All code-related files are realsed under MIT license while all media (found in the assets directory) under Creative Commons license CC-BY-4.0. Please see the respective LICENSE files for terms of use.
 
 ## The model
 The heat conduction is modeled using the one dimensional heat equation to solve for the temperature $$T$$, on the domain $$\Omega = [x_0, x_1]$$:
@@ -87,3 +78,11 @@ Defining $$L = \left ( 1 + \frac{\gamma \Delta t}{2} \right) M + \frac{\alpha \D
 $$L \mathbf{u}^{k+1} = R \mathbf{u}^k + \Delta t \frac{\mathbf{f}^{k+1} + \mathbf{f}^{k}}{2}.$$
 
 Because matrix $$L$$ is time independent this system can be intgrated in time efficiently since is only needs to be inverted once for the whole simulation.
+
+## Software and libraries used
+* Gnu Scientific Library for dense linear algebra
+* Suitesparse for sparse linear algebra
+* cJSON for parsing the configuration file
+
+## License
+All code-related files are realsed under MIT license while all media (found in the assets directory) under Creative Commons license CC-BY-4.0. Please see the respective LICENSE files for terms of use.
