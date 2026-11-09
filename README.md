@@ -31,6 +31,7 @@ meaning no heat is allowed to escape through the boundary.
 The initial temperature is set to $$T=0$$.
 
 ### Spatial discretization
+![Some text](assets/lagrange_basis.png)
 The problem is solved numerically using the finite element method (FEM). To discretizate one first has to define the space of possible solutions (the so-called trial space) $$\mathcal{U}$$, so that $$T \in \mathcal{U}$$. Next we multiply by a test function $$v \in \mathcal{V}$$, where $$\mathcal{V}$$ is the space of test functions (the so-called test space), and integratining over the domain. This leads to the time-continuous weak formulation of the problem: Find $$T \in \mathcal{U}$$ such that:
 
 $$ \left(v, \frac{\partial T}{\partial x} \right)_{\Omega} =$$
