@@ -14,7 +14,7 @@ Jet:
 https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
 
 ## The model
-![Some text]{assets/rod_drawing.png}
+![Some text](assets/rod_drawing.png)
 
 The heat conduction is modeled using the one dimensional heat equation to solve for the temperature $$T$$, on the domain $$\Omega = [x_0, x_1]$$:
 
