@@ -31,7 +31,6 @@ meaning no heat is allowed to escape through the boundary.
 The initial temperature is set to $$T=0$$.
 
 ### Spatial discretization
-![Some text](assets/lagrange_basis.png)
 The problem is solved numerically using the finite element method (FEM). To discretizate one first has to define the space of possible solutions (the so-called trial space) $$\mathcal{U}$$, so that $$T \in \mathcal{U}$$. Next we multiply by a test function $$v \in \mathcal{V}$$, where $$\mathcal{V}$$ is the space of test functions (the so-called test space), and integratining over the domain. This leads to the time-continuous weak formulation of the problem: Find $$T \in \mathcal{U}$$ such that:
 
 $$ \left(v, \frac{\partial T}{\partial x} \right)_{\Omega} =$$
@@ -46,7 +45,11 @@ and consequently its spatial derivative is
 
 $$\frac{\partial T}{\partial x} = \sum_{j=1}^{n} u_j(t) \frac{d \varphi}{dx}$$.
 
-Here $$\varphi_j$$ is a polynomial of arbitrary order centered on the node with index $$j$$, shown in Fig. (2) below. Inserting the expression for $$T$$ into the above weak form and letting $$v = \varphi_i(x)$$, we for each $$i \in \{1,...,n\}$$ obtain the following ordinary differential equations:
+Here $$\varphi_j$$ is a polynomial of arbitrary order centered on the node with index $$j$$, shown in Fig. (2) below.
+
+![Some text](assets/lagrange_basis.png)
+
+Inserting the expression for $$T$$ into the above weak form and letting $$v = \varphi_i(x)$$, we for each $$i \in \{1,...,n\}$$ obtain the following ordinary differential equations:
 
 $$\sum_{j=1}^{n} \frac{d u_j}{dt} (\varphi_i, \varphi_j) = -\alpha \sum_{j=1}^{n} \left(\frac{\varphi_i}{dx}, \frac{\varphi_j}{dx} \right)$$
 
