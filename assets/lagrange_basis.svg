@@ -2,13 +2,16 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="195.23355mm"
+   height="103.87614mm"
+   viewBox="0 0 195.23355 103.87614"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
    sodipodi:docname="lagrange_basis.svg"
+   inkscape:export-filename="lagrange_basis.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,10 +27,10 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="0.82671156"
-     inkscape:cx="397.35745"
-     inkscape:cy="560.65504"
-     inkscape:window-width="1272"
-     inkscape:window-height="1398"
+     inkscape:cx="369.53638"
+     inkscape:cy="537.67241"
+     inkscape:window-width="1920"
+     inkscape:window-height="1048"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -76,7 +79,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-7.3832212,-6.0737788)">
     <g
        id="g102"
        transform="translate(-221.99717,0.59042007)">
