@@ -114,7 +114,7 @@ Vector run_simulation(const double t0, const double t1, const size_t nt)
 }
 ```
 
-Note that in the actual code the inverse is never formed explicitly, rather it relies on its (sparse) LU factorization to calculate its action on vectors and matrices.
+Note for efficiency reasons that in the actual code the inverse is never formed explicitly, rather it relies on its (sparse) LU factorization to calculate its action on vectors and matrices.
 
 ## Software and libraries used
 * GNU Scientific Library for dense linear algebra
