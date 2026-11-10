@@ -14,8 +14,10 @@ https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
 Jet:
 https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
 
-## The model
+## Wiring
+![Some text](assets/circuit.png)
 
+## The model
 The heat conduction is modeled using the one dimensional heat equation to solve for the temperature $$T$$, on the domain $$\Omega = [x_0, x_1]$$:
 
 $$\frac{\partial T}{\partial t} = \alpha \nabla^2 T - \beta \frac{\partial T}{\partial x} - \gamma T + q(x, t), \quad x \in \Omega.$$
