@@ -1,6 +1,6 @@
 # Heat-Diffusion-LED
 ![Some text](assets/rod_drawing.png)
-Model heat diffusion on thin rod in real time on addressable RGBs.
+Model heat diffusion on a thin rod in real time and display the result using addressable RGBs.
 
 ## Demonstration
 Below is a couple of simulations using colormaps from matplotlib displayed on addressable RGBs.
@@ -37,23 +37,26 @@ The problem is solved numerically using the finite element method (FEM). To disc
 
 $$ \left(v, \frac{\partial T}{\partial x} \right)_{\Omega} =$$
 
-Here the notation $$ \left( \cdot, \cdot \right) = \int_{\Omega} \cdot d \Omega $$ is used to denote an inner product.
+Here the notation
 
-With the weak form in place, the finite element discretization can now be performed by restricting trial- and test spaces to functions that are piecewise polynomial over each element of the discretized domain, which we denote by $$\mathcal{U}_h$$ and $$\mathcal{V}_h$$, respectively. To discretize the PDE we make use of the fact that any function $$u \in \mathcal{U}_h$$ can be written as a linear combination
+$$ \left( \cdot, \cdot \right) = \int_{\Omega} \cdot d \Omega $$
 
-$$T(x, t) = \sum_{j=1}^{n} u_j(t) \varphi_j(x)$$,
+denotes an inner product.
 
-and consequently its spatial derivative is
+With the weak form in place, the finite element discretization can now be performed by restricting trial- and test spaces to functions that are piecewise polynomial over each element of the discretized domain, which we denote by $$\mathcal{U}_h$$ and $$\mathcal{V}_h$$, respectively. To discretize the PDE we make use of the fact that any function $$u \in \mathcal{U}_h$$ can be written as a linear combination:
+
+$$T(x, t) = \sum_{j=1}^{n} u_j(t) \varphi_j(x)$$:
+Here $$\varphi_j$$ is a polynomial of arbitrary order centered on the node with index $$j$$. Order 1 and order 2 polynomials are shown in the figure below.
+
+![Lagrange basis of (a) order 1 and (b) order 2](assets/lagrange_basis.png)
+
+Taking the derivative w.r.t. x then gives:
 
 $$\frac{\partial T}{\partial x} = \sum_{j=1}^{n} u_j(t) \frac{d \varphi}{dx}$$.
 
-Here $$\varphi_j$$ is a polynomial of arbitrary order centered on the node with index $$j$$. Order 1 and order 2 polynomials are shown in the figure below.
-
-![Some text](assets/lagrange_basis.png)
-
 Inserting the expression for $$T$$ into the above weak form and letting $$v = \varphi_i(x)$$, we for each $$i \in \{1,...,n\}$$ obtain the following ordinary differential equations:
 
-$$\sum_{j=1}^{n} \frac{d u_j}{dt} (\varphi_i, \varphi_j) = -\alpha \sum_{j=1}^{n} \left(\frac{\varphi_i}{dx}, \frac{\varphi_j}{dx} \right)$$
+$$\sum_{j=1}^{n} \frac{d u_j}{dt} \left (\varphi_i, \varphi_j \right) = -\alpha \sum_{j=1}^{n} \left(\frac{d \varphi_i}{dx}, \frac{d \varphi_j}{dx} \right) u_j - \beta \sum_{j=1}^{n} \left(\varphi_i, \frac{d\varphi_j}{dx} \right ) u_j - \gamma \sum_{j=1}^{n} \left(\varphi_i, \varphi_j \right) u_j + \left(\varphi_i, q(x, t) \right)_{\Omega}$$
 
 By defining the following the following matrices and vector with elements given by:
 
@@ -80,16 +83,18 @@ where $k$ denots the time step. Rearranging term we then arrive at the following
 
 $$\left ( \left ( 1 + \frac{\gamma \Delta t}{2} \right) M + \frac{\alpha \Delta t}{2} A + \frac{\beta \Delta t}{2} S \right ) \mathbf{u}^{k+1} = \left ( \left ( 1 - \frac{\gamma \Delta t}{2} \right) M - \frac{\alpha \Delta t}{2} A - \frac{\beta \Delta t}{2} S \right ) \mathbf{u}^{k+1} + \Delta t \frac{\mathbf{f}^{k+1} + \mathbf{f}^k}{2}$$.
 
-Defining $$L = \left ( 1 + \frac{\gamma \Delta t}{2} \right) M + \frac{\alpha \Delta t}{2} A + \frac{\beta \Delta t}{2} S$$ and $$R=\left ( 1 - \frac{\gamma \Delta t}{2} \right) M - \frac{\alpha \Delta t}{2} A - \frac{\beta \Delta t}{2} S$$, this system becomes
+Defining $$L = \left ( 1 + \frac{\gamma \Delta t}{2} \right) M + \frac{\alpha \Delta t}{2} A + \frac{\beta \Delta t}{2} S$$ and $$R=\left ( 1 - \frac{\gamma \Delta t}{2} \right) M - \frac{\alpha \Delta t}{2} A - \frac{\beta \Delta t}{2} S$$, the system can be written as
 
-$$L \mathbf{u}^{k+1} = R \mathbf{u}^k + \Delta t \frac{\mathbf{f}^{k+1} + \mathbf{f}^{k}}{2}.$$
+$$L \mathbf{u}^{k+1} = R \mathbf{u}^k + \frac{\Delta t}{2} \left ( \mathbf{f}^{k+1} + \mathbf{f}^{k} \right )$$.
 
-Because matrix $$L$$ is time independent this system can be intgrated in time efficiently since is only needs to be inverted once for the whole simulation.
+Because matrix $$L$$ is time independent this system can be intgrated in time efficiently since it only needs to be inverted once for the whole simulation.
 
 ## Software and libraries used
-* Gnu Scientific Library for dense linear algebra
+* GNU Scientific Library for dense linear algebra
 * Suitesparse for sparse linear algebra
 * cJSON for parsing the configuration file
+* Inkscape for creating figures
+* Frtiz for creating the circuit diagram
 
 ## License
 All code-related files are realsed under MIT license while all media (found in the assets directory) under Creative Commons license CC-BY-4.0. Please see the respective LICENSE files for terms of use.

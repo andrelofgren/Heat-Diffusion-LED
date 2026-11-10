@@ -135,54 +135,54 @@ void read_config(const char *config_path)
     cJSON *domain_params_json = cJSON_GetObjectItemCaseSensitive(param_json, "domain");
     check_json_object(param_json, serial_params_json, "domain");
 
-    json_val = cJSON_GetObjectItemCaseSensitive(domain_params_json, "x_left");
-    check_json_object(param_json, json_val, "x_left");
+    json_val = cJSON_GetObjectItemCaseSensitive(domain_params_json, "x0");
+    check_json_object(param_json, json_val, "x0");
     params.domain.x0 = json_val->valuedouble;
 
-    json_val = cJSON_GetObjectItemCaseSensitive(domain_params_json, "x_right");
-    check_json_object(param_json, json_val, "x_right");
+    json_val = cJSON_GetObjectItemCaseSensitive(domain_params_json, "x1");
+    check_json_object(param_json, json_val, "x1");
     params.domain.x1 = json_val->valuedouble;
 
-    json_val = cJSON_GetObjectItemCaseSensitive(domain_params_json, "time_start");
-    check_json_object(param_json, json_val, "time_start");
+    json_val = cJSON_GetObjectItemCaseSensitive(domain_params_json, "t0");
+    check_json_object(param_json, json_val, "t0");
     params.domain.t0 = json_val->valuedouble;
 
-    json_val = cJSON_GetObjectItemCaseSensitive(domain_params_json, "time_end");
-    check_json_object(param_json, json_val, "time_end");
+    json_val = cJSON_GetObjectItemCaseSensitive(domain_params_json, "t1");
+    check_json_object(param_json, json_val, "t1");
     params.domain.t1 = json_val->valuedouble;
 
     cJSON *material_params_json = cJSON_GetObjectItemCaseSensitive(param_json, "material");
     check_json_object(param_json, material_params_json, "material");
 
-    json_val = cJSON_GetObjectItemCaseSensitive(material_params_json, "diffusivity");
-    check_json_object(param_json, json_val, "diffusivity");
+    json_val = cJSON_GetObjectItemCaseSensitive(material_params_json, "alpha");
+    check_json_object(param_json, json_val, "alpha");
     params.material.alpha = json_val->valuedouble;
 
-    json_val = cJSON_GetObjectItemCaseSensitive(material_params_json, "advection_velocity");
-    check_json_object(param_json, json_val, "advection_velocity");
+    json_val = cJSON_GetObjectItemCaseSensitive(material_params_json, "beta");
+    check_json_object(param_json, json_val, "beta");
     params.material.beta = json_val->valuedouble;
 
-    json_val = cJSON_GetObjectItemCaseSensitive(material_params_json, "heat_transfer_coefficient");
-    check_json_object(param_json, json_val, "heat_transfer_coefficient");
+    json_val = cJSON_GetObjectItemCaseSensitive(material_params_json, "gamma");
+    check_json_object(param_json, json_val, "gamma");
     params.material.gamma = json_val->valuedouble;
 
     cJSON *source_params_json = cJSON_GetObjectItemCaseSensitive(param_json, "source");
     check_json_object(param_json, source_params_json, "source");
 
-    json_val = cJSON_GetObjectItemCaseSensitive(source_params_json, "amplitude");
-    check_json_object(param_json, json_val, "amplitude");
+    json_val = cJSON_GetObjectItemCaseSensitive(source_params_json, "A0");
+    check_json_object(param_json, json_val, "A0");
     params.source.A0 = json_val->valuedouble;
 
-    json_val = cJSON_GetObjectItemCaseSensitive(source_params_json, "std_dev");
-    check_json_object(param_json, json_val, "std_dev");
+    json_val = cJSON_GetObjectItemCaseSensitive(source_params_json, "sigma");
+    check_json_object(param_json, json_val, "sigma");
     params.source.sigma = json_val->valuedouble;
 
-    json_val = cJSON_GetObjectItemCaseSensitive(source_params_json, "xpos");
-    check_json_object(param_json, json_val, "xpos");
+    json_val = cJSON_GetObjectItemCaseSensitive(source_params_json, "mu");
+    check_json_object(param_json, json_val, "mu");
     params.source.mu = json_val->valuedouble;
 
-    json_val = cJSON_GetObjectItemCaseSensitive(source_params_json, "relaxation");
-    check_json_object(param_json, json_val, "relaxation");
+    json_val = cJSON_GetObjectItemCaseSensitive(source_params_json, "tau");
+    check_json_object(param_json, json_val, "tau");
     params.source.tau = json_val->valuedouble;
 
     cJSON *comput_params_json = cJSON_GetObjectItemCaseSensitive(
@@ -190,16 +190,16 @@ void read_config(const char *config_path)
     );
     check_json_object(param_json, source_params_json, "computational");
 
-    json_val = cJSON_GetObjectItemCaseSensitive(comput_params_json, "num_elements");
-    check_json_object(param_json, json_val, "num_elements");
+    json_val = cJSON_GetObjectItemCaseSensitive(comput_params_json, "nx");
+    check_json_object(param_json, json_val, "nx");
     params.computational.nx = json_val->valueint;
 
-    json_val = cJSON_GetObjectItemCaseSensitive(comput_params_json, "num_time_steps");
-    check_json_object(param_json, json_val, "num_time_steps");
+    json_val = cJSON_GetObjectItemCaseSensitive(comput_params_json, "nt");
+    check_json_object(param_json, json_val, "nt");
     params.computational.nt = json_val->valueint;
 
-    json_val = cJSON_GetObjectItemCaseSensitive(comput_params_json, "lagrange_poly_deg");
-    check_json_object(param_json, json_val, "lagrange_poly_deg");
+    json_val = cJSON_GetObjectItemCaseSensitive(comput_params_json, "deg");
+    check_json_object(param_json, json_val, "deg");
     params.computational.deg = json_val->valueint;
 
     json_val = cJSON_GetObjectItemCaseSensitive(comput_params_json, "update_after_num_steps");

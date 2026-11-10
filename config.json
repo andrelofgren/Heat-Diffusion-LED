@@ -4,29 +4,29 @@
         "baud_rate": 115200
     },
     "domain": {
-        "x_left": 0.0,
-        "x_right": 0.8,
-        "time_start": 0.0,
-        "time_end": 15.0
+        "x0": 0.0,
+        "x1": 0.8,
+        "t0": 0.0,
+        "t1": 15.0
     },
     "material": {
-        "diffusivity": 0.05,
-        "advection_velocity": 0.0,
-        "heat_transfer_coefficient": 0.2
+        "alpha": 0.05,
+        "beta": 0.0,
+        "gamma": 0.2
     },
     "source": {
-        "amplitude": 25.0,
-        "std_dev": 0.025,
-        "xpos": 0.4,
-        "relaxation": 4.0
+        "A0": 25.0,
+        "sigma": 0.025,
+        "mu": 0.4,
+        "tau": 4.0
     },
     "computational": {
-        "num_elements": 100,
-        "num_time_steps": 3000,
-        "lagrange_poly_deg": 3,
+        "nx": 100,
+        "nt": 3000,
+        "deg": 3,
         "update_after_num_steps": 10,
         "repeat_num_times": -1,
-        "num_leds": 25
+        "num_leds": 49
     },
     "colormap": {
         "num_bins": 15,

@@ -7,8 +7,8 @@
 
 #include <FastLED.h>
 
-#define LED_OFFSET 0
-#define NUM_LEDS 25
+#define LED_OFFSET 25
+#define NUM_LEDS 49
 #define DATA_PIN 6
 #define BAUD_RATE 115200
 #define TIMEOUT_MS 10000UL
