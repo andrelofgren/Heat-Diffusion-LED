@@ -14,15 +14,23 @@ https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
 Jet:
 https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
 
-## Wiring
+## Microcontroller setup
 ![Some text](assets/circuit.png)
+
+Relevant configuration parameters in ```config.json```:
+```json
+"serial": {
+    "device": "/dev/ttyACM0",
+    "baud_rate": 115200
+}
+```
 
 ## The model
 The heat conduction is modeled using the one dimensional heat equation to solve for the temperature $$T$$, on the spatial domain $$\Omega = [x_0, x_1]$$ over a time interval $$[t_0, t_1]$$:
 
 $$\frac{\partial T}{\partial t} = \alpha \nabla^2 T - \beta \frac{\partial T}{\partial x} - \gamma T + q(x, t), \quad (x, t) \in \Omega \times [t_0, t_1]$$.
 
-The first term on the right-hand side (RHS) represents heat spread through diffusion, with $$\alpha$$ being the diffusion coefficient. The second term on the RHS is an advection term, with $$\beta$$ being the advection velocity. The third term models the heat exchange with the surrounding air, with $$\gamma$$ being the thermal conductivity between the air and the rod. Lastly $$q$$ is a forcing term representing an external source heating the rod. This could for for example be a lighter centered in the middle of the rod, or really anything that can generate heat such as radioactive decay.
+In this model the instaneous change in temperature, represented by the left-hand side term, at a particular point $x$ has four contribution: The first term on the right-hand side (RHS) is the change in temperature due to diffusion, with $$\alpha$$ being the diffusion coefficient. The second term on the RHS is the temperature change due to advection, with $$\beta$$ being the advection velocity. The third term models the heat exchange with the surrounding air, with $$\gamma$$ being the thermal conductivity between the air and the rod. Lastly $$q$$ is a forcing term representing an external source heating the rod. This could for example be the lit match, shown in the figure above, but can in reality be anything that can generate heat such as radioactive decay.
 
 For boundary conditions insulated ends are used:
 
@@ -31,6 +39,33 @@ $$\frac{\partial T}{\partial x} = 0, \quad x=x_0$$ or $$x=x_1$$,
 meaning no heat is allowed to escape through the boundary.
 
 The initial temperature is set to $$T=0$$.
+
+Relevant configuration parameters in ```config.json```:
+```json
+"domain": {
+    "x0": 0.0,
+    "x1": 0.8,
+    "t0": 0.0,
+    "t1": 15.0
+}
+```
+
+## The source term
+To force the model we use a heat source term in the form of a gaussian with an exponentialy decaying amplitude:
+
+$$q(x, t) = A_0 e^{\frac{t}{\tau}} e^{\frac{(x-\mu)^2}{4 \sigma^2}}$$.
+
+Here $$A_0$$ is the initial amplitude, $$\tau$$ a relaxation term, $$\mu$$ is the center of the gaussian, and $$\sigma$$ its standard deviation. The function is plotted below for the indicated parameter values.
+
+Relevant configuration parameters in ```config.json```:
+```json
+"source": {
+    "A0": 25.0,
+    "sigma": 0.025,
+    "mu": 0.4,
+    "tau": 4.0
+}
+```
 
 ### Spatial discretization
 The problem is solved numerically using the finite element method (FEM). To discretizate one first has to define the space of possible solutions (the so-called trial space) $$\mathcal{U}$$, so that $$T \in \mathcal{U}$$. Next we multiply by a test function $$v \in \mathcal{V}$$, where $$\mathcal{V}$$ is the space of test functions (the so-called test space), and integratining over the domain. This leads to the time-continuous weak formulation of the problem: Find $$T \in \mathcal{U}$$ such that:
@@ -115,6 +150,20 @@ Vector run_simulation(const double t0, const double t1, const size_t nt)
 ```
 
 Note for efficiency reasons that in the actual code the inverse is never formed explicitly, rather it relies on its (sparse) LU factorization to calculate its action on vectors and matrices.
+
+Relevant configuration parameters in ```config.json```:
+```json
+"computational": {
+    "nx": 100,
+    "nt": 3000,
+    "deg": 3,
+    "update_after_num_steps": 10,
+    "repeat_num_times": -1,
+    "num_leds": 25
+}
+```
+
+Note that -1 means repeat simulation, by all practical means, indefintely.
 
 ## Software and libraries used
 * GNU Scientific Library for dense linear algebra
