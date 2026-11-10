@@ -1,4 +1,4 @@
-# Heat-Diffusion-LED
+# Heat-Diffusion-LED (WIP)
 ![Some text](assets/rod_drawing.png)
 Model heat diffusion on a thin rod in real time and display the result using addressable RGBs.
 
@@ -18,9 +18,9 @@ https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
 ![Some text](assets/circuit.png)
 
 ## The model
-The heat conduction is modeled using the one dimensional heat equation to solve for the temperature $$T$$, on the domain $$\Omega = [x_0, x_1]$$:
+The heat conduction is modeled using the one dimensional heat equation to solve for the temperature $$T$$, on the spatial domain $$\Omega = [x_0, x_1]$$ over a time interval $$[t_0, t_1]$$:
 
-$$\frac{\partial T}{\partial t} = \alpha \nabla^2 T - \beta \frac{\partial T}{\partial x} - \gamma T + q(x, t), \quad x \in \Omega.$$
+$$\frac{\partial T}{\partial t} = \alpha \nabla^2 T - \beta \frac{\partial T}{\partial x} - \gamma T + q(x, t), \quad (x, t) \in \Omega \times [t_0, t_1]$$.
 
 The first term on the right-hand side (RHS) represents heat spread through diffusion, with $$\alpha$$ being the diffusion coefficient. The second term on the RHS is an advection term, with $$\beta$$ being the advection velocity. The third term models the heat exchange with the surrounding air, with $$\gamma$$ being the thermal conductivity between the air and the rod. Lastly $$q$$ is a forcing term representing an external source heating the rod. This could for for example be a lighter centered in the middle of the rod, or really anything that can generate heat such as radioactive decay.
 
