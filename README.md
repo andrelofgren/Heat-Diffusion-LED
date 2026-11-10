@@ -47,6 +47,11 @@ Relevant configuration parameters in ```config.json```:
     "x1": 0.8,
     "t0": 0.0,
     "t1": 15.0
+},
+"material": {
+    "alpha": 0.05,
+    "beta": 0.0,
+    "gamma": 0.2
 }
 ```
 
