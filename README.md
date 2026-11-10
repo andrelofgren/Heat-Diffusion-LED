@@ -166,6 +166,7 @@ Relevant configuration parameters in ```config.json```:
 Note that -1 means repeat simulation, by all practical means, indefintely.
 
 ## Software and libraries used
+* FastLED arduino firmware for programming LEDs
 * GNU Scientific Library for dense linear algebra
 * Suitesparse for sparse linear algebra
 * cJSON for parsing the configuration file
