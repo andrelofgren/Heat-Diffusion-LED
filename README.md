@@ -95,12 +95,15 @@ Vector run_simulation(const double t0, const double t1, const size_t nt)
     const double dt = (t1 - t0)/nt;
 
     const Matrix L = assemble_lhs_mat(dt);
+    const Matrix L_inv = Matrix_invert(L);
     const Matrix R = assemble_rhs_mat(dt);
     Vector u0 = 0;
 
-    Matrix_invert(L_inv);
+    double t = t0;
     for (size_t step = 0; step < num_time_steps; step++) {
-        Vector f = assemble_rhs_vec(dt);
+        Vector f0 = assemble_rhs_vec(t)
+        Vector f1 = assemble_rhs_vec(t+dt)
+        Vector f = 0.5*dt*(f1 + f0);
         Vector u = L_inv*R*u0 + L_inv*f;
 
         u0 = u;
