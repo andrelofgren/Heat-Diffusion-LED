@@ -8,7 +8,7 @@ For running the program, the following hardware components are required:
 * A +5V DC power supply for powering the LEDs
 * A 220 $$\Omega$$ resistor (optional but recommended)
 
-The power supply can either be external, or if on a work station you can use its Power Supply Unit (PSU). The power supply should the very least be able to deliver a current of 2 A or above. Recommended is 5 A or above, depending on the type and the number of LEDs of course. Typically 60 mA per LED, but your milage may vary.
+The power supply can either be external, or if on a work station you can use its Power Supply Unit (PSU). The power supply should the very least be able to deliver a current of 2 A or above. Recommended is 5 A or above, depending on the type and the number of LEDs of course. Typically 60 mA per LED is needed, but your milage may vary.
 
 ## Demonstration
 Below is a couple of simulations using colormaps from matplotlib displayed on addressable RGBs.
