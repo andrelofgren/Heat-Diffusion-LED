@@ -105,9 +105,10 @@ The configuration file can also be stored under ~/.local/heat_diffusion/config.j
 Relevant configuration parameters in ```config.json```:
 ```json
 {
-    "num_leds": x,
+    "num_leds": 25,
 }
 ```
+This should be changed to the number of LEDs in your strip.
 
 ## Colormaps
 The script supports all default colormaps of the Matplotlib Python plotting library. To set a specific colormap to be used, first install matplotlib (either via distro package manager or pip), and then run
