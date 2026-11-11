@@ -2,7 +2,7 @@
     "num_leds": 49,
     "serial": {
         "device": "/dev/ttyACM0",
-        "baud_rate": 115200,
+        "baud_rate": 115200
     },
     "domain": {
         "x0": 0.0,

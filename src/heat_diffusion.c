@@ -52,7 +52,6 @@ typedef struct ComputationalParams {
     size_t nt;
     size_t deg;
     size_t num_steps_update;
-    size_t num_leds;
     size_t repeat_num_times;
 
 } ComputationalParams;
@@ -65,6 +64,7 @@ typedef struct ColormapParams {
 } ColormapParams;
 
 typedef struct Params {
+    size_t num_leds;
     SerialPort serial_port;
     MaterialParams material;
     SourceParams source;
@@ -124,6 +124,11 @@ void read_config(const char *config_path)
     check_json_object(param_json, serial_params_json, "serial_port");
 
     const cJSON *json_val;
+
+    json_val = cJSON_GetObjectItemCaseSensitive(param_json, "num_leds");
+    check_json_object(param_json, json_val, "num_leds");
+    params.num_leds = json_val->valueint;
+
     json_val = cJSON_GetObjectItemCaseSensitive(serial_params_json, "device");
     check_json_object(param_json, json_val, "device");
     strncpy(params.serial_port.device, json_val->valuestring, sizeof json_str_buffer);
@@ -209,10 +214,6 @@ void read_config(const char *config_path)
     json_val = cJSON_GetObjectItemCaseSensitive(comput_params_json, "repeat_num_times");
     check_json_object(param_json, json_val, "repeat_num_times");
     params.computational.repeat_num_times = json_val->valueint;
-
-    json_val = cJSON_GetObjectItemCaseSensitive(comput_params_json, "num_leds");
-    check_json_object(param_json, json_val, "num_leds");
-    params.computational.num_leds = json_val->valueint;
 
     cJSON *cmap_params_json = cJSON_GetObjectItemCaseSensitive(param_json, "colormap");
     check_json_object(param_json, source_params_json, "colormap");
@@ -349,7 +350,7 @@ int main(int argc, char *argv[])
     const size_t nt = params.computational.nt;
     const size_t deg = params.computational.deg;
     const size_t nt_update = params.computational.num_steps_update;
-    const size_t num_leds = params.computational.num_leds;
+    const size_t num_leds = params.num_leds;
     const size_t num_color_bins = params.colormap.num_bins;
 
     double *red_fem_func_vals_data = params.colormap.red_fem_func_vals_data;

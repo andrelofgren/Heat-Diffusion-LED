@@ -2,13 +2,13 @@
 ![](assets/rod_drawing.png)
 This is a program simulating in real time how heat diffuses on a thin rod, displayed using addressable RGBs.
 
-For running the program, the following hardware is required:
+For running the program, the following hardware components are required:
 * An Arduino microcontroller, e.g., Arduino UNO
 * An addressable LED strip, e.g., WS2812B
 * A +5V DC power supply for powering the LEDs
 * A 220 $$\Omega$$ resistor (optional but recommended)
 
-The power supply can either be external, or if on work station you can use its Power Supply Unit (PSU). The power supply should the very least be able to deliver a current of 2 A or above. Recommended is 5 A or above, depending on the type and the number of LEDs of course. Typically 60 mA per LED.
+The power supply can either be external, or if on a work station you can use its Power Supply Unit (PSU). The power supply should the very least be able to deliver a current of 2 A or above. Recommended is 5 A or above, depending on the type and the number of LEDs of course. Typically 60 mA per LED, but your milage may vary.
 
 ## Demonstration
 Below is a couple of simulations using colormaps from matplotlib displayed on addressable RGBs.
@@ -59,10 +59,9 @@ make install
 which will install the binary ```heat_diffusion``` in the ```bin``` directory.
 
 #### Microcontroller
-The Arduino firmware file ```firmware/firmware.ino``` makes use of the FastLED library to control the LEDs. Before attempting to upload the firmware, first ensure that you have setup the arduino-cli properly, see the following link for instructions https://docs.arduino.cc/arduino-cli on how this is done. Secondly, make sure that the port name and board name in ```firmware/sketch.yaml``` is correct. If using a different board from the Arduino Uno, the board name has to be changed. Lastly, the number of LEDs needs to be specified in the ```firmare.ino``` file; this is done
-by changing ```x``` to the number of LEDs in your strip in the line that reads
+The Arduino firmware file ```firmware/firmware.ino``` makes use of the FastLED library to control the LEDs. Before attempting to upload the firmware, first ensure that you have setup the arduino-cli properly, see the following link for instructions https://docs.arduino.cc/arduino-cli on how this is done. Secondly, make sure that the port name and board name in ```firmware/sketch.yaml``` is correct. If using a different board from the Arduino Uno, the board name has to be changed. Lastly, the number of LEDs needs to be specified in the ```firmare.ino``` file. This is done by changing the number 25 to the number of LEDs in your strip in the line that reads
 ```c
-#define NUM_LEDS x
+#define NUM_LEDS 25
 ```
 
 Once you have ensured that the arduino-cli program has been setup properly, the FastLED library can be installed by invoking
