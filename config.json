@@ -1,11 +1,12 @@
 {
+    "num_leds": 49,
     "serial": {
         "device": "/dev/ttyACM0",
-        "baud_rate": 115200
+        "baud_rate": 115200,
     },
     "domain": {
         "x0": 0.0,
-        "x1": 0.8,
+        "x1": 1.0,
         "t0": 0.0,
         "t1": 15.0
     },
@@ -17,18 +18,19 @@
     "source": {
         "A0": 25.0,
         "sigma": 0.025,
-        "mu": 0.4,
+        "mu": 0.5,
         "tau": 4.0
     },
     "computational": {
         "nx": 100,
-        "nt": 3000,
+        "nt": 6000,
         "deg": 3,
         "update_after_num_steps": 10,
         "repeat_num_times": -1,
         "num_leds": 49
     },
     "colormap": {
+        "num_leds": 49,
         "num_bins": 15,
         "color_1": [
             0.11775297,
