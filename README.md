@@ -1,6 +1,10 @@
 # Heat-Diffusion-LED (WIP)
-![Some text](assets/rod_drawing.png)
+![](assets/rod_drawing.png)
 Model heat diffusion on a thin rod in real time and display the result using addressable RGBs.
+
+For running the program, the following hardware is required:
+* An Arduino microcontroller, e.g., Arduino UNO
+* Addressable LED strip, e.g., WS2812B
 
 ## Demonstration
 Below is a couple of simulations using colormaps from matplotlib displayed on addressable RGBs.
@@ -14,8 +18,63 @@ https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
 Jet:
 https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
 
-## Microcontroller setup
-![Some text](assets/circuit.png)
+## Installation instructions
+
+### Software
+#### Host
+Software wise, a C compiler and standard build tools are needed. On Debian-based distros
+these can usually be installed by running the command
+
+```sh
+sudo apt install gcc build-essential
+```
+
+Furthermore, the program makes use of the development version of the following libraries:
+
+* GNU Scientific Library for dense linear algebra
+* Suitesparse for sparse linear algebra
+* cJSON for parsing the configuration file
+
+These can be installed via
+```sh
+sudo apt install libsuitesparse-dev libgsl-dev libcjson-dev
+```
+
+If using a different distro, consult your package manager for the specific packages.
+
+Once dependencies are installed, clone the repo:
+```sh
+git clone https://github.com/andrelofgren/Heat-Diffusion-LED.git
+```
+
+Then to compile, change into the cloned directory and type
+```sh
+make install
+```
+which will install the binary ```heat_diffusion``` in the ```bin``` directory.
+
+#### Microcontroller
+The Arduino firmware file ```firmware/firmware.ino``` makes use of the FastLED library to control the LEDs. Before attempting to upload the firmware, first ensure that you have setup the arduino-cli properly, see the following link for instructions https://docs.arduino.cc/arduino-cli on how this is done. Secondly, make sure that the port name and board name in ```firmware/sketch.yaml``` is correct. If using a different board from the Arduino Uno, the board name has to be changed. Lastly, the number of LEDs needs to be specified in the ```firmare.ino``` file; this is done
+by changing ```x``` to the number of LEDs in your strip in the line that reads
+```c
+#define NUM_LEDS x
+```
+
+Once you have ensured that the arduino-cli program has been setup properly, the FastLED library can be installed by invoking
+```sh
+arduino-cli lib install FastLED
+```
+
+Once the command has finished the firmware is ready to be compiled and uploaded. To this end, connect a usb cable between the host computer and the Arduino, and then simply type
+```sh
+make upload
+```
+
+Alternatively, the above procedure of installing the FastLED library and uploading the firmware can be done using the Arduino IDE.
+### Microcontroller setup
+![Circuit diagram](assets/circuit.png)
+
+The wiring is 
 
 Relevant configuration parameters in ```config.json```:
 ```json
@@ -24,6 +83,14 @@ Relevant configuration parameters in ```config.json```:
     "baud_rate": 115200
 }
 ```
+
+## Running the program
+Once the wiring is correctly setup, the program can now be run by typing
+```sh
+bin/heat_diffusion config.json
+```
+
+This configuration file can also be stored under ~/.local/heat_diffusion/config.json which is the default path the program looks for the config file. For a description of each option in the configuration file, keep on reading.
 
 ## The model
 The heat conduction is modeled using the one dimensional heat equation to solve for the temperature $$T$$, on the spatial domain $$\Omega = [x_0, x_1]$$ over a time interval $$[t_0, t_1]$$:
@@ -167,17 +234,7 @@ Relevant configuration parameters in ```config.json```:
     "num_leds": 25
 }
 ```
-
 Note that -1 means repeat simulation, by all practical means, indefintely.
-
-## Software and libraries used
-* FastLED arduino firmware for programming LEDs
-* GNU Scientific Library for dense linear algebra
-* Suitesparse for sparse linear algebra
-* cJSON for parsing the configuration file
-* Inkscape for creating figures
-* Fritzing for creating the circuit diagram
-* Matplotlib for color schemes
 
 ## License
 All code-related files are realsed under MIT license while all media (found in the assets directory) under Creative Commons license CC-BY-4.0. Please see the respective LICENSE files for terms of use.
