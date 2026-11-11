@@ -95,7 +95,7 @@ Relevant configuration parameters in ```config.json```:
 Ensure that device path is correct.
 
 ## Running the program
-Once the wiring is correctly setup, we now just set number of LEDs in the configuration file ```config.json```. The program can now be run by typing
+With the wiring correctly setup, we now just need to set number of LEDs in the configuration file ```config.json```. The program can then be run by typing
 ```sh
 bin/heat_diffusion config.json
 ```
