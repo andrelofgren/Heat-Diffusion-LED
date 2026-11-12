@@ -7,11 +7,12 @@ For running the program, the following hardware components are required:
 * An addressable LED strip, e.g., WS2812B
 * A +5V DC power supply for powering the LEDs
 * A 220 $$\Omega$$ resistor (optional but recommended)
+* A soldering iron (depending on the LEDs)
 
 The power supply can either be external, or if on a work station you can use its Power Supply Unit (PSU). The power supply should the very least be able to deliver a current of 2 A or above. Recommended is 5 A or above, depending on the type and the number of LEDs, of course. Typically 60 mA per LED is needed, but your milage may vary.
 
 ## Demonstration
-Below is a video demonstration using the hot colormap from Matplotlib.
+Below is a video demonstration using the [hot](https://matplotlib.org/stable/users/explain/colors/colormaps.html) colormap from [Matplotlib](https://matplotlib.org).
 
 ![](assets/heat_diffusion_animation.gif)
 ![](assets/heat_diffusion_recording.gif)
@@ -29,11 +30,11 @@ sudo apt install gcc build-essential
 
 The program also makes use of the development version of the following external libraries:
 
-* GNU Scientific Library for dense linear algebra
-* Suitesparse for sparse linear algebra
-* cJSON for parsing the configuration file
+* [GNU Scientific Library](https://www.gnu.org/software/gsl) for dense linear algebra
+* [Suitesparse](https://github.com/DrTimothyAldenDavis/SuiteSparse) for sparse linear algebra
+* [cJSON](https://github.com/DaveGamble/cJSON) for parsing the configuration file
 
-These can be installed via
+These can libraries can be installed via
 ```sh
 sudo apt install libsuitesparse-dev libgsl-dev libcjson-dev
 ```
@@ -52,9 +53,9 @@ make install
 which will install the binary ```heat_diffusion``` in the ```bin``` directory.
 
 #### Microcontroller
-The Arduino firmware file ```firmware/firmware.ino``` makes use of the FastLED library to control the LEDs. Before attempting to upload the firmware, first ensure that you have setup the arduino-cli properly, see the following link for instructions https://docs.arduino.cc/arduino-cli on how this is done. Secondly, make sure that the port name and board name in ```firmware/sketch.yaml``` is correct. If using a different board from the Arduino Uno, the board name has to be changed. Lastly, the number of LEDs needs to be specified in the ```firmare.ino``` file. This is done by changing the number 25 to the number of LEDs in your strip in the line that reads
+The Arduino firmware file ```firmware/firmware.ino``` makes use of the [FastLED](https://fastled.io) library to control the LEDs. Before attempting to upload the firmware, first ensure that you have setup the arduino-cli properly, see this [link](https://docs.arduino.cc/arduino-cli) for instructions on how this is done. Secondly, make sure that the port name and board name in ```firmware/sketch.yaml``` is correct. If using a different board from the Arduino Uno, the board name has to be changed. Lastly, the number of LEDs needs to be specified in the ```firmare.ino``` file. This is done by changing the number 49 to the number of LEDs in your strip in the line that reads
 ```c
-#define NUM_LEDS 25
+#define NUM_LEDS 49
 ```
 
 Once you have ensured that the arduino-cli program has been setup properly, the FastLED library can be installed by invoking
@@ -62,10 +63,11 @@ Once you have ensured that the arduino-cli program has been setup properly, the 
 arduino-cli lib install FastLED
 ```
 
-Once the command has finished the firmware is ready to be compiled and uploaded. To this end, connect a usb cable between the host computer and the Arduino, and then simply type
+After the command has finished the firmware is ready to be compiled and uploaded. To this end, connect a usb cable between the host computer and the Arduino, and then simply type
 ```sh
 make upload
 ```
+which compile the program and upload it to the microcontroller.
 
 Alternatively, the above procedure of installing the FastLED library and uploading the firmware can be done using the Arduino IDE.
 ### Microcontroller setup
@@ -73,10 +75,11 @@ Alternatively, the above procedure of installing the FastLED library and uploadi
 
 The wiring I use is shown in the above figure. The setup is as follows:
 
-1. Connect the PWM PIN 6 to the data channel on the RGB list. Optionally with a 220 $$\Omega$$ resistor in between.
-2. Connect the Arduino, PSU, and LED strip to ground.
-3. Connect the +5V PSU pin to the LED strip positive pin.
-4. Connect a usb cable between the arduino and the host.
+1. Connect the PWM PIN 6 to the data channel on the RGB list.
+2. Optionally, solder on a 220 $$\Omega$$ resistor in between.
+3. Connect the Arduino, PSU, and LED strip to ground.
+4. Connect the +5V PSU pin to the LED strip positive pin.
+5. Connect a usb cable between the arduino and the host.
 
 Relevant configuration parameters in ```config.json```:
 ```json
@@ -86,10 +89,10 @@ Relevant configuration parameters in ```config.json```:
 }
 ```
 
-Ensure that device path is correct.
+Ensure that the device path is correct.
 
 ## Running the program
-With the wiring correctly setup, we now just need to set number of LEDs in the configuration file ```config.json```. The program can then be run by typing
+With the wiring in place, we now just need to set number of LEDs in the configuration file ```config.json```. The program can then be run by typing
 ```sh
 bin/heat_diffusion config.json
 ```
@@ -99,7 +102,7 @@ The configuration file can also be stored under ~/.local/heat_diffusion/config.j
 Relevant configuration parameters in ```config.json```:
 ```json
 {
-    "num_leds": 25,
+    "num_leds": 49,
 }
 ```
 This should be changed to the number of LEDs in your strip.
@@ -163,7 +166,7 @@ Relevant configuration parameters in ```config.json```:
 ```json
 "domain": {
     "x0": 0.0,
-    "x1": 0.8,
+    "x1": 1.0,
     "t0": 0.0,
     "t1": 15.0
 },
@@ -186,7 +189,7 @@ Relevant configuration parameters in ```config.json```:
 "source": {
     "A0": 25.0,
     "sigma": 0.025,
-    "mu": 0.4,
+    "mu": 0.5,
     "tau": 4.0
 }
 ```
@@ -194,7 +197,7 @@ Relevant configuration parameters in ```config.json```:
 ### Spatial discretization
 The problem is solved numerically using the finite element method (FEM). To discretizate one first has to define the space of possible solutions (the so-called trial space) $$\mathcal{U}$$, so that $$T \in \mathcal{U}$$. Next we multiply by a test function $$v \in \mathcal{V}$$, where $$\mathcal{V}$$ is the space of test functions (the so-called test space), and integratining over the domain. This leads to the time-continuous weak formulation of the problem: Find $$T \in \mathcal{U}$$ such that:
 
-$$ \left(v, \frac{\partial T}{\partial t} \right)_{\Omega} = -\alpha\left(\frac{\partial v}{\partial x}, \frac{\partial u}{\partial x} \right )_{\Omega} - \beta \left(v, \frac{\partial u}{\partial x} \right )_{\Omega} - \gamma \left(v, u \right )_{\Omega} + (v, q)_{\Omega}$$,
+$$\left(v, \frac{\partial T}{\partial t} \right)_{\Omega} = -\alpha\left(\frac{\partial v}{\partial x} \right)_{\Omega}, \frac{\partial u}{\partial x} \right )_{\Omega} - \beta \left(v, \frac{\partial u}{\partial x} \right )_{\Omega} - \gamma \left(v, u \right )_{\Omega} + (v, q)_{\Omega}$$,
 
 where
 
@@ -215,9 +218,9 @@ $$\frac{\partial T}{\partial x} = \sum_{j=1}^{n} u_j(t) \frac{d \varphi}{dx}$$.
 
 Inserting the expression for $$T$$ into the above weak form and letting $$v = \varphi_i(x)$$, we for each $$i \in \{1,...,n\}$$ obtain the following ordinary differential equations:
 
-$$\sum_{j=1}^{n} \frac{d u_j}{dt} \left (\varphi_i, \varphi_j \right) = -\alpha \sum_{j=1}^{n} \left(\frac{d \varphi_i}{dx}, \frac{d \varphi_j}{dx} \right) u_j - \beta \sum_{j=1}^{n} \left(\varphi_i, \frac{d\varphi_j}{dx} \right ) u_j - \gamma \sum_{j=1}^{n} \left(\varphi_i, \varphi_j \right) u_j + \left(\varphi_i, q(x, t) \right)_{\Omega}$$
+$$\sum_{j=1}^{n} \frac{d u_j}{dt} \left (\varphi_i, \varphi_j \right)_{\Omega} = -\alpha \sum_{j=1}^{n} \left(\frac{d \varphi_i}{dx}, \frac{d \varphi_j}{dx} \right)_{\Omega} u_j - \beta \sum_{j=1}^{n} \left(\varphi_i, \frac{d\varphi_j}{dx} \right )_{\Omega} u_j - \gamma \sum_{j=1}^{n} \left(\varphi_i, \varphi_j \right)_{\Omega} u_j + \left(\varphi_i, q(x, t) \right)_{\Omega}$$
 
-By defining the following the following matrices and vector with elements given by:
+Defining the following the following matrices and vector with elements given by:
 
 $$M_{ij} = (\varphi_i, \varphi_j)_{\Omega}$$,
 
@@ -279,7 +282,7 @@ Relevant configuration parameters in ```config.json```:
 ```json
 "computational": {
     "nx": 100,
-    "nt": 3000,
+    "nt": 6000,
     "deg": 3,
     "update_after_num_steps": 10,
     "repeat_num_times": -1
