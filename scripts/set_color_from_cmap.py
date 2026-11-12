@@ -6,10 +6,17 @@ import matplotlib as mpl
 # Import some additional colormaps
 try:
     import cmasher
+except ImportError as ie:
+    print(f"Package {ie.name} not found, unable to import some colormaps")
+try:
     import cmocean
+except ImportError as ie:
+    print(f"Package {ie.name} not found, unable to import some colormaps")
+try:
     import sciviz
 except ImportError as ie:
     print(f"Package {ie.name} not found, unable to import some colormaps")
+
 
 parser = argparse.ArgumentParser(
     prog="set_color_from_cmap",
