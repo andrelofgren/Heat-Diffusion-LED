@@ -11,15 +11,8 @@ For running the program, the following hardware components are required:
 The power supply can either be external, or if on a work station you can use its Power Supply Unit (PSU). The power supply should the very least be able to deliver a current of 2 A or above. Recommended is 5 A or above, depending on the type and the number of LEDs, of course. Typically 60 mA per LED is needed, but your milage may vary.
 
 ## Demonstration
-Below is a couple of simulations using colormaps from matplotlib displayed on addressable RGBs.
+Below is a video demonstration using the hot colormap from Matplotlib.
 
-Gnuplot:
-https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
-
-Hot:
-https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
-
-Jet:
 https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
 
 ![](assets/heat_diffusion_animation.gif)
