@@ -15,6 +15,8 @@ Below is a video demonstration using the hot colormap from Matplotlib.
 
 https://github.com/user-attachments/assets/866e1d23-5a75-4f3f-b477-7837770ec363
 
+![](assets/heat_diffusion_recording.gif)
+
 ![](assets/heat_diffusion_animation.gif)
 
 ## Installation instructions

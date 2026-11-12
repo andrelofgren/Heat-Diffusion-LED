@@ -26,7 +26,7 @@
         "nt": 6000,
         "deg": 3,
         "update_after_num_steps": 10,
-        "repeat_num_times": 1
+        "repeat_num_times": -1
     },
     "colormap": {
         "num_bins": 15,
