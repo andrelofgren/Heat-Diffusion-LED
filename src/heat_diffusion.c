@@ -308,20 +308,6 @@ void interrupt_handler(const int sig) {
     printf("Program interrupted, cleaning up...\n");
 }
 
-void write_gsl_vector(const char *filename, const gsl_vector *vec)
-{
-    FILE *fptr = fopen(filename, "w");
-    if (!fptr) {
-        fprintf(stderr, "Failed to open %s: %s \n", filename, strerror(errno));
-        exit(EXIT_FAILURE);
-    }
-
-    for (size_t k = 0; k < vec->size; k++)
-        fprintf(fptr, "%.17f\n", gsl_vector_get(vec, k));
-
-    fclose(fptr);
-}
-
 int main(int argc, char *argv[])
 {
     // Signal handler for cleaning up if an interrupt signal is received
@@ -487,22 +473,6 @@ int main(int argc, char *argv[])
             rgb_data
         );
 
-        //char fname_buf[128];
-
-        //snprintf(fname_buf, 128, "output/uvec_dt=%g_k=0.dat", dt);
-        //write_gsl_vector(fname_buf, u_fem_vals_list);
-
-        //write_gsl_vector("output/xvec.dat", led_xpos_list);
-
-        //snprintf(fname_buf, 128, "output/rvec_dt=%g_k=0.dat", dt);
-        //write_gsl_vector(fname_buf, red_vals_list);
-
-        //snprintf(fname_buf, 128, "output/gvec_dt=%g_k=0.dat", dt);
-        //write_gsl_vector(fname_buf, green_vals_list);
-
-        //snprintf(fname_buf, 128, "output/bvec_dt=%g_k=0.dat", dt);
-        //write_gsl_vector(fname_buf, blue_vals_list);
-
         // Send rgb data to microcontroller
         SerialPort_write(&params.serial_port, rgb_data, 3*num_leds);
 
@@ -527,17 +497,6 @@ int main(int argc, char *argv[])
 
             // Update led colors after performing the number of steps given by nt_update (read from config)
             if (k != 0 && (k+1) % nt_update == 0) {
-                // snprintf(fname_buf, 128, "output/uvec_dt=%g_k=%zu.dat", dt, k);
-                // write_gsl_vector(fname_buf, u_fem_vals_list);
-
-                // snprintf(fname_buf, 128, "output/rvec_dt=%g_k=%zu.dat", dt, k);
-                // write_gsl_vector(fname_buf, red_vals_list);
-
-                // snprintf(fname_buf, 128, "output/gvec_dt=%g_k=%zu.dat", dt, k);
-                // write_gsl_vector(fname_buf, green_vals_list);
-
-                // snprintf(fname_buf, 128, "output/bvec_dt=%g_k=%zu.dat", dt, k);
-                // write_gsl_vector(fname_buf, blue_vals_list);
 
                 // Get temperature at led positions of first led list
                 FEMFunction1D_set_vals_from_vec(&u_fem_func, hp.sol_vec);
