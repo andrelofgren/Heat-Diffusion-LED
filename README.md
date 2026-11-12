@@ -195,9 +195,11 @@ Relevant configuration parameters in ```config.json```:
 ```
 
 ### Spatial discretization
+![Lagrange basis of (a) order 1 and (b) order 2](assets/lagrange_basis.png)
+
 The problem is solved numerically using the finite element method (FEM). To discretizate one first has to define the space of possible solutions (the so-called trial space) $$\mathcal{U}$$, so that $$T \in \mathcal{U}$$. Next we multiply by a test function $$v \in \mathcal{V}$$, where $$\mathcal{V}$$ is the space of test functions (the so-called test space), and integratining over the domain. This leads to the time-continuous weak formulation of the problem: Find $$T \in \mathcal{U}$$ such that:
 
-$$\left(v, \frac{\partial T}{\partial t} \right)_{\Omega} = -\alpha\left(\frac{\partial v}{\partial x} \right)_{\Omega}, \frac{\partial u}{\partial x} \right )_{\Omega} - \beta \left(v, \frac{\partial u}{\partial x} \right )_{\Omega} - \gamma \left(v, u \right )_{\Omega} + (v, q)_{\Omega}$$,
+$$\left(v, \frac{\partial T}{\partial t} \right)_{\Omega} = -\alpha\left(\frac{\partial v}{\partial x}, \frac{\partial u}{\partial x} \right )_{\Omega} - \beta \left(v, \frac{\partial u}{\partial x} \right )_{\Omega} - \gamma \left(v, u \right )_{\Omega} + (v, q)_{\Omega}$$,
 
 where
 
@@ -207,16 +209,15 @@ denotes an inner product between functions $$v$$ and $$u$$.
 
 With the weak form in place, the finite element discretization can now be performed by restricting trial- and test spaces to functions that are piecewise polynomial over each element of the discretized domain. These spaces we denote by $$\mathcal{U}_h$$ and $$\mathcal{V}_h$$, respectively. To discretize the PDE we then make use of the fact that any function $$u \in \mathcal{U}_h$$ can be written as a linear combination:
 
-$$T(x, t) = \sum_{j=1}^{n} u_j(t) \varphi_j(x)$$:
-Here $$\varphi_j$$ is a polynomial of arbitrary order centered on the node with index $$j$$. Order 1 and order 2 polynomials are shown in the figure below.
+$$T(x, t) = \sum_{j=1}^{n} u_j(t) \varphi_j(x)$$,
 
-Taking the derivative w.r.t. x then gives:
+with spatial derivative:
 
 $$\frac{\partial T}{\partial x} = \sum_{j=1}^{n} u_j(t) \frac{d \varphi}{dx}$$.
 
-![Lagrange basis of (a) order 1 and (b) order 2](assets/lagrange_basis.png)
+Here $$\varphi_j$$ is a polynomial of arbitrary order centered on the node with index $$j$$. Order 1 (linear) and order 2 (quadratic) polynomials are shown in the figure above.
 
-Inserting the expression for $$T$$ into the above weak form and letting $$v = \varphi_i(x)$$, we for each $$i \in \{1,...,n\}$$ obtain the following ordinary differential equations:
+Inserting the expression for $$T$$ into the above weak form and letting $$v = \varphi_i(x)$$, we for each $$i \in \{1,...,n\}$$, where $$n$$ is the number of degrees of freedoms, obtain the following ordinary differential equations:
 
 $$\sum_{j=1}^{n} \frac{d u_j}{dt} \left (\varphi_i, \varphi_j \right)_{\Omega} = -\alpha \sum_{j=1}^{n} \left(\frac{d \varphi_i}{dx}, \frac{d \varphi_j}{dx} \right)_{\Omega} u_j - \beta \sum_{j=1}^{n} \left(\varphi_i, \frac{d\varphi_j}{dx} \right )_{\Omega} u_j - \gamma \sum_{j=1}^{n} \left(\varphi_i, \varphi_j \right)_{\Omega} u_j + \left(\varphi_i, q(x, t) \right)_{\Omega}$$
 
