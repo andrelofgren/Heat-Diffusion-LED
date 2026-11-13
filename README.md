@@ -1,8 +1,8 @@
-# Heat-Diffusion-On-Addressable-RGBs
+# Heat Diffusion On Addressable RGBs
 ![](assets/heat_diffusion_recording.gif)
 ![](assets/heat_diffusion_animation.gif)
 
-Simulate heat diffusion in real time on addressable LEDs.
+Simulate heat diffusion in real time on addressable RGBs.
 
 For running the program, the following hardware components are required:
 * An Arduino microcontroller, e.g., Arduino UNO
