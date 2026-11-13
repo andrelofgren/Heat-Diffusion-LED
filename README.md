@@ -202,11 +202,13 @@ The problem is solved numerically using the finite element method (FEM). To disc
 
 $$\left(v, \frac{\partial T}{\partial t} \right) = -\alpha \left(\frac{\partial v}{\partial x}, \frac{\partial T}{\partial c} \right) - \beta \left(v, \frac{\partial T}{\partial x} \right) - \gamma \left(v, T \right) + \left(v, q \right)$$,
 
-where
+for all $$v \in \mathcal{V}$$.
+
+Here we use the notation
 
 $$ \left(v, u \right) = \int_{\Omega} v u d \Omega $$
 
-denotes an inner product between functions $$v$$ and $$u$$.
+to denota an inner product between functions $$v$$ and $$u$$.
 
 With the weak form in place, the finite element discretization can now be performed by restricting trial- and test spaces to functions that are piecewise polynomial over each element of the discretized domain. These spaces we denote by $$\mathcal{U}_h$$ and $$\mathcal{V}_h$$, respectively. To discretize the PDE we then make use of the fact that any function $$u \in \mathcal{U}_h$$ can be written as a linear combination:
 
@@ -220,7 +222,7 @@ Here $$n$$ is the number of nodes and $$\varphi_j$$ is a polynomial of arbitrary
 
 Inserting the expression for $$T$$ into the above weak form and letting $$v = \varphi_i(x)$$, we for each $$i \in \{1,...,n\}$$, where $$n$$ is the number of degrees of freedoms, obtain the following ordinary differential equations:
 
-$$\sum_{j=1}^{n} \frac{d u_j}{dt} \left (\varphi_i, \varphi_j \right) = -\alpha \sum_{j=1}^{n} \left(\frac{d \varphi_i}{dx}, \frac{d \varphi_j}{dx} \right) u_j - \beta \sum_{j=1}^{n} \left(\varphi_i, \frac{d\varphi_j}{dx} \right ) u_j - \gamma \sum_{j=1}^{n} \left(\varphi_i, \varphi_j \right) u_j + \left(\varphi_i, q(x, t) \right)$$
+$$\sum_{j=1}^{n} \frac{d u_j}{dt} \left (\varphi_i, \varphi_j \right) = -\alpha \sum_{j=1}^{n} \left(\frac{d \varphi_i}{dx}, \frac{d \varphi_j}{dx} \right) u_j - \beta \sum_{j=1}^{n} \left(\varphi_i, \frac{d\varphi_j}{dx} \right ) u_j - \gamma \sum_{j=1}^{n} \left(\varphi_i, \varphi_j \right) u_j + \left(\varphi_i, q(x, t) \right)$$.
 
 Defining the following the following matrices and vector with elements given by:
 
