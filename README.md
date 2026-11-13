@@ -30,7 +30,7 @@ The program also makes use of the development packages of the following external
 * [Suitesparse](https://github.com/DrTimothyAldenDavis/SuiteSparse) for sparse linear algebra
 * [cJSON](https://github.com/DaveGamble/cJSON) for parsing the configuration file
 
-These can libraries can be installed via
+These libraries can be installed via
 ```sh
 sudo apt install libsuitesparse-dev libgsl-dev libcjson-dev
 ```
