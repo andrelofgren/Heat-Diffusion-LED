@@ -178,7 +178,7 @@ Relevant configuration parameters in ```config.json```:
 ![](assets/gaussian.png)
 To force the model we use a heat source term in the form of a gaussian with an exponentialy decaying amplitude:
 
-$$q(x, t) = A_0 \exp\left({\frac{t-t_0}{\tau}}\right) \exp\left({\frac{(x-\mu)^2}{4 \sigma^2}}\right)$$.
+$$q(x, t) = A_0 \exp\left(-{\frac{t-t_0}{\tau}}\right) \exp\left({\frac{(x-\mu)^2}{4 \sigma^2}}\right)$$.
 
 Here $$A_0$$ is the initial amplitude, $$\tau$$ a relaxation term, $$\mu$$ is the center of the gaussian, and $$\sigma$$ its standard deviation. The function is shown at time $$t = t_0$$ in the above figure for the indicated parameter values in the config file below.
 
