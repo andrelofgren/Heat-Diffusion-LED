@@ -226,13 +226,13 @@ $$\sum_{j=1}^{n} \frac{d u_j}{dt} \left (\varphi_i, \varphi_j \right) = -\alpha 
 
 Defining the following the following matrices and vector with elements given by:
 
-$$M_{ij} = (\varphi_i, \varphi_j)$$,
+$$M_{ij} = \left(\varphi_i, \varphi_j \right)$$,
 
-$$A_{ij} = (\frac{d \varphi_i}{dx}, \frac{d\varphi_j}{dx})$$,
+$$A_{ij} = \left(\frac{d \varphi_i}{dx}, \frac{d\varphi_j}{dx} \right)$$,
 
-$$S_{ij} = (\varphi_i, \frac{d\varphi_j}{dx})$$,
+$$S_{ij} = \left(\varphi_i, \frac{d\varphi_j}{dx} \right)$$,
 
-$$f_i = (\varphi_i, q(x, t))$$,
+$$f_i = \left(\varphi_i, q(x, t) \right)$$,
 
 the system can be written more compactly as:
 
