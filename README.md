@@ -219,7 +219,7 @@ Here $$n$$ is the number of nodes and $$\varphi_j$$ is a polynomial of arbitrary
 
 Inserting the expression for $$T$$ into the above weak form and letting $$v = \varphi_i(x)$$, we for each $$i \in \{1,...,n\}$$ obtain the following ordinary differential equations:
 
-$$\sum_{j=1}^{n} \frac{d u_j}{dt} \left (\varphi_i, \varphi_j \right) = -\alpha \sum_{j=1}^{n} \left(\frac{d \varphi_i}{dx}, \frac{d \varphi_j}{dx} \right) u_j - \beta \sum_{j=1}^{n} \left(\varphi_i, \frac{d\varphi_j}{dx} \right ) u_j - \gamma \sum_{j=1}^{n} \left(\varphi_i, \varphi_j \right) u_j + \left(\varphi_i, \right)$$.
+$$\sum_{j=1}^{n} \frac{d u_j}{dt} \left (\varphi_i, \varphi_j \right) = -\alpha \sum_{j=1}^{n} \left(\frac{d \varphi_i}{dx}, \frac{d \varphi_j}{dx} \right) u_j - \beta \sum_{j=1}^{n} \left(\varphi_i, \frac{d\varphi_j}{dx} \right ) u_j - \gamma \sum_{j=1}^{n} \left(\varphi_i, \varphi_j \right) u_j + \left(\varphi_i, q \right)$$.
 
 Defining the following the following matrices and vector with elements given by:
 
