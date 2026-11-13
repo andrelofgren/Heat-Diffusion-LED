@@ -12,7 +12,7 @@ For running the program, the following hardware components are required:
 The power supply can either be external, or if on a work station you can use its Power Supply Unit (PSU). The power supply should the very least be able to deliver a current of 2 A or above. Recommended is 5 A or above, depending on the type and the number of LEDs, of course. Typically 60 mA per LED is needed, but your milage may vary.
 
 ## Demonstration
-Below is a video demonstration using the [hot](https://matplotlib.org/stable/users/explain/colors/colormaps.html) colormap from [Matplotlib](https://matplotlib.org).
+Below is a video demonstration using the colormap [hot](https://matplotlib.org/stable/users/explain/colors/colormaps.html) from [Matplotlib](https://matplotlib.org).
 
 ![](assets/heat_diffusion_animation.gif)
 ![](assets/heat_diffusion_recording.gif)
@@ -48,12 +48,12 @@ git clone https://github.com/andrelofgren/Heat-Diffusion-LED.git
 
 Then to compile, change into the cloned directory and type
 ```sh
-make install
+cd Heat-Diffusion-LED && make install
 ```
-which will install the binary ```heat_diffusion``` in the ```bin``` directory.
+which will install the binary ```heat_diffusion``` into the ```bin``` directory.
 
 #### Microcontroller
-The Arduino firmware file ```firmware/firmware.ino``` makes use of the [FastLED](https://fastled.io) library to control the LEDs. Before attempting to upload the firmware, first ensure that you have setup the arduino-cli properly, see this [link](https://docs.arduino.cc/arduino-cli) for instructions on how this is done. Secondly, make sure that the port name and board name in ```firmware/sketch.yaml``` is correct. If using a different board from the Arduino Uno, the board name has to be changed. Lastly, the number of LEDs needs to be specified in the ```firmare.ino``` file. This is done by changing the number 49 to the number of LEDs in your strip in the line that reads
+The Arduino firmware file ```firmware/firmware.ino``` makes use of the [FastLED](https://fastled.io) library to control the LEDs. Before attempting to upload the firmware, first ensure that you have setup the arduino-cli properly, see this [link](https://docs.arduino.cc/arduino-cli) for instructions on how this is done. Secondly, make sure that the port name and board name in ```firmware/sketch.yaml``` is correct. If using a different board from the Arduino Uno, the board name has to be changed. Lastly, the number of LEDs needs to be specified in the ```firmware/firmare.ino``` file. This is done by changing the number 49 to the number of LEDs in your strip in the line that reads
 ```c
 #define NUM_LEDS 49
 ```
@@ -200,7 +200,7 @@ Relevant configuration parameters in ```config.json```:
 
 The problem is solved numerically using the finite element method (FEM). To discretizate one first has to define the space of possible solutions (the so-called trial space) $$\mathcal{U}$$, so that $$T \in \mathcal{U}$$. Next we multiply by a test function $$v \in \mathcal{V}$$, where $$\mathcal{V}$$ is the space of test functions (the so-called test space), and integratining over the domain. This leads to the time-continuous weak formulation of the problem: Find $$T \in \mathcal{U}$$ such that:
 
-$$\left(v, \frac{\partial T}{\partial t} \right)_{\Omega} = -\alpha\left(\frac{\partial v}{\partial x}, \frac{\partial u}{\partial x} \right )_{\Omega}$$,
+$$\left(v, \frac{\partial T}{\partial t} \right)_{\Omega} = $$,
 
 where
 
