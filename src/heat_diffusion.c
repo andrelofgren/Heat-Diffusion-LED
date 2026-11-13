@@ -87,7 +87,7 @@ double heat_source(const double x, const double t)
     const double mu = params.source.mu;
     const double sigma = params.source.sigma;
     const double X = sqrt(0.5)*((x-mu)/sigma);
-    return source_amplitude(t)*exp(-X*X)/(sigma*sqrt(2*M_PI));
+    return source_amplitude(t)*exp(-X*X);
 }
 
 void check_json_object(cJSON *json_root, const cJSON *json_obj, const char *key)
