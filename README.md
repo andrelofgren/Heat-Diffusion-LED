@@ -200,7 +200,7 @@ Relevant configuration parameters in ```config.json```:
 
 The problem is solved numerically using the finite element method (FEM). To discretizate one first has to define the space of possible solutions (the so-called trial space) $$\mathcal{U}$$, so that $$T \in \mathcal{U}$$. Next we multiply by a test function $$v \in \mathcal{V}$$, where $$\mathcal{V}$$ is the space of test functions (the so-called test space), and integratining over the domain. This leads to the time-continuous weak formulation of the problem: Find $$T \in \mathcal{U}$$ such that:
 
-$$\left(v, \frac{\partial T}{\partial t} \right) = -\alpha \left(\frac{\partial v}{\partial x}, \frac{\partial T}{\partial t} \right) -\beta \left(v, \frac{\partial T}{\partial t} \right)$$,
+$$\left(v, \frac{\partial T}{\partial t} \right) = -\alpha \left(\frac{\partial v}{\partial x}, \frac{\partial T}{\partial c} \right) - \beta \left(v, \frac{\partial T}{\partial x} \right) - \gamma \left(v, T \right)$$,
 
 where
 
