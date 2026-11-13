@@ -207,7 +207,7 @@ $$ \left(v, u \right) = \int_{\Omega} v u d \Omega $$
 
 to denote an inner product between functions $$v$$ and $$u$$.
 
-With the weak form in place, the finite element discretization can now be performed by restricting trial- and test spaces to functions that are piecewise polynomial over each element of the discretized domain. These spaces we denote by $$\mathcal{U}_h$$ and $$\mathcal{V}_h$$, respectively. To discretize the PDE we then make use of the fact that any function $$u \in \mathcal{U}_h$$ can be written as a linear combination:
+With the weak form in place, the finite element discretization can now be performed by restricting trial- and test spaces to functions that are piecewise polynomial over each element of the discretized domain. These spaces we denote by $$\mathcal{U}_h$$ and $$\mathcal{V}_h$$, respectively. To discretize the PDE we then make use of the fact that any function $$T \in \mathcal{U}_h$$ can be written as a linear combination:
 
 $$T(x, t) = \sum_{j=1}^{n} u_j(t) \varphi_j(x)$$,
 
