@@ -28,7 +28,7 @@ these can usually be installed by running the command
 sudo apt install gcc build-essential
 ```
 
-The program also makes use of the development version of the following external libraries:
+The program also makes use of the development packages of the following external libraries:
 
 * [GNU Scientific Library](https://www.gnu.org/software/gsl) for dense linear algebra
 * [Suitesparse](https://github.com/DrTimothyAldenDavis/SuiteSparse) for sparse linear algebra
