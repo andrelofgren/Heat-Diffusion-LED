@@ -253,7 +253,7 @@ Defining $$L = \left ( 1 + \frac{\gamma \Delta t}{2} \right) M + \frac{\alpha \D
 
 $$L \mathbf{u}^{k+1} = R \mathbf{u}^k + \frac{\Delta t}{2} \left ( \mathbf{f}^{k+1} + \mathbf{f}^{k} \right )$$.
 
-Because the matrix $$L$$ is time independent, it only needs to be inverted once for the whole simulation. The solution procedure is summarized by the following (pseudo) C algorithm:
+Because the matrix $$L$$ is time independent, it only needs to be inverted once for the whole simulation. The solution procedure is summarized by the following (pseudo) C procedure:
 
 ```C
 Vector run_simulation(const double t0, const double t1, const size_t nt)
