@@ -147,7 +147,7 @@ Here the field ```color_1``` corresponds to the RGB value for the minimum temper
 ![](assets/rod_drawing.png)
 The heat conduction is modeled using the one dimensional heat equation to solve for the temperature $$T$$, on the spatial domain $$\Omega = [x_0, x_1]$$ over a time interval $$[t_0, t_1]$$:
 
-$$\frac{\partial T}{\partial t} = \alpha \nabla^2 T - \beta \frac{\partial T}{\partial x} - \gamma T + q(x, t), \quad (x, t) \in \Omega \times [t_0, t_1]$$.
+$$\frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2} - \beta \frac{\partial T}{\partial x} - \gamma T + q(x, t), \quad (x, t) \in \Omega \times [t_0, t_1]$$.
 
 In this model the temperature time-derivative on the left-hand side at a particular point $x$ has four contribution: The first term on the right-hand side (RHS) is the change in temperature due to diffusion, with $$\alpha$$ being the diffusion coefficient. The second term on the RHS is the temperature change due to advection, with $$\beta$$ being the advection velocity. The third term models the heat exchange with the surrounding air, with $$\gamma$$ being the thermal conductivity between the air and the rod. Lastly $$q$$ is a forcing term representing an external source heating the rod. This could for example be the lit match, shown in the figure above, but can in theory be any process capable of generating heat such as radioactive decay.
 
