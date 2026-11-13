@@ -289,7 +289,7 @@ Relevant configuration parameters in ```config.json```:
     "repeat_num_times": -1
 }
 ```
-Note that -1 means repeat simulation, by all practical means, indefintely.
+Note that -1 means repeat simulation, by all practical means, indefinitely.
 
 ## License
 All code-related files are released under MIT license, while all media (found in the assets directory) under Creative Commons license CC-BY-4.0. Please see the respective LICENSE file for terms of use.
