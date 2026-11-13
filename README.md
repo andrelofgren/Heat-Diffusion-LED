@@ -201,7 +201,7 @@ Relevant configuration parameters in ```config.json```:
 The problem is solved numerically using the finite element method (FEM). To discretizate one first has to define the space of possible solutions (the so-called trial space) $$\mathcal{U}$$, so that $$T \in \mathcal{U}$$. Next we multiply by a test function $$v \in \mathcal{V}$$, where $$\mathcal{V}$$ is the space of test functions (the so-called test space), and integratining over the domain. This leads to the time-continuous weak formulation of the problem: Find $$T \in \mathcal{U}$$ such that:
 
 $$
-\left(v, \frac{\partial T}{\partial t} \right)_{\Omega} = \left(v, \frac{\partial T}{\partial t} \right)_{\Omega}
+\left(v, \frac{\partial T}{\partial t} \right) = \left(v, \frac{\partial T}{\partial t} \right)
 $$,
 
 where
@@ -222,17 +222,17 @@ Here $$\varphi_j$$ is a polynomial of arbitrary order centered on the node with 
 
 Inserting the expression for $$T$$ into the above weak form and letting $$v = \varphi_i(x)$$, we for each $$i \in \{1,...,n\}$$, where $$n$$ is the number of degrees of freedoms, obtain the following ordinary differential equations:
 
-$$\sum_{j=1}^{n} \frac{d u_j}{dt} \left (\varphi_i, \varphi_j \right)_{\Omega} = -\alpha \sum_{j=1}^{n} \left(\frac{d \varphi_i}{dx}, \frac{d \varphi_j}{dx} \right)_{\Omega} u_j - \beta \sum_{j=1}^{n} \left(\varphi_i, \frac{d\varphi_j}{dx} \right )_{\Omega} u_j - \gamma \sum_{j=1}^{n} \left(\varphi_i, \varphi_j \right)_{\Omega} u_j + \left(\varphi_i, q(x, t) \right)_{\Omega}$$
+$$\sum_{j=1}^{n} \frac{d u_j}{dt} \left (\varphi_i, \varphi_j \right) = -\alpha \sum_{j=1}^{n} \left(\frac{d \varphi_i}{dx}, \frac{d \varphi_j}{dx} \right) u_j - \beta \sum_{j=1}^{n} \left(\varphi_i, \frac{d\varphi_j}{dx} \right ) u_j - \gamma \sum_{j=1}^{n} \left(\varphi_i, \varphi_j \right) u_j + \left(\varphi_i, q(x, t) \right)$$
 
 Defining the following the following matrices and vector with elements given by:
 
-$$M_{ij} = (\varphi_i, \varphi_j)_{\Omega}$$,
+$$M_{ij} = (\varphi_i, \varphi_j)$$,
 
-$$A_{ij} = (\frac{d \varphi_i}{dx}, \frac{d\varphi_j}{dx})_{\Omega}$$,
+$$A_{ij} = (\frac{d \varphi_i}{dx}, \frac{d\varphi_j}{dx})$$,
 
-$$S_{ij} = (\varphi_i, \frac{d\varphi_j}{dx})_{\Omega}$$,
+$$S_{ij} = (\varphi_i, \frac{d\varphi_j}{dx})$$,
 
-$$f_i = (\varphi_i, q(x, t))_{\Omega}$$,
+$$f_i = (\varphi_i, q(x, t))$$,
 
 the system can be written more compactly as:
 
