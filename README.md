@@ -93,7 +93,7 @@ With the wiring in place, we now just need to set number of LEDs in the configur
 bin/heat_diffusion config.json
 ```
 
-The configuration file may also be stored under ~/.local/heat_diffusion/config.json which is the path the program looks for the config file if not specified.
+The configuration file may also be stored under ```~/.local/heat_diffusion/config.json``` which is the path the program looks for the config file if not specified.
 
 Relevant configuration parameters in ```config.json```:
 ```json
