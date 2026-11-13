@@ -1,5 +1,5 @@
 {
-    "num_leds": 49,
+    "num_leds": 48,
     "serial": {
         "device": "/dev/ttyACM0",
         "baud_rate": 115200
