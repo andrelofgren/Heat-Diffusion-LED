@@ -97,7 +97,7 @@ With the wiring in place, we now just need to set number of LEDs in the configur
 bin/heat_diffusion config.json
 ```
 
-The configuration file can also be stored under ~/.local/heat_diffusion/config.json which is the path the program looks for the config file if not specified.
+The configuration file may also be stored under ~/.local/heat_diffusion/config.json which is the path the program looks for the config file if not specified.
 
 Relevant configuration parameters in ```config.json```:
 ```json
@@ -200,7 +200,7 @@ Relevant configuration parameters in ```config.json```:
 
 The problem is solved numerically using the finite element method (FEM). To discretizate one first has to define the space of possible solutions (the so-called trial space) $$\mathcal{U}$$, so that $$T \in \mathcal{U}$$. Next we multiply by a test function $$v \in \mathcal{V}$$, where $$\mathcal{V}$$ is the space of test functions (the so-called test space), and integratining over the domain. This leads to the time-continuous weak formulation of the problem: Find $$T \in \mathcal{U}$$ such that:
 
-$$\left(v, \frac{\partial T}{\partial t} \right)_{\Omega} = -\alpha\left(\frac{\partial v}{\partial x}, \frac{\partial u}{\partial x} \right )_{\Omega} - \beta \left(v, \frac{\partial u}{\partial x} \right )_{\Omega} - \gamma \left(v, u \right )_{\Omega} + (v, q)_{\Omega}$$,
+$$\left(v, \frac{\partial T}{\partial t} \right)_{\Omega} = -\alpha\left(\frac{\partial v}{\partial x}, \frac{\partial u}{\partial x} \right )_{\Omega}$$,
 
 where
 
