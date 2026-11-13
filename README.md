@@ -1,8 +1,7 @@
 # Heat-Diffusion-LED (WIP)
-![](assets/heat_diffusion_animation.gif)
-![](assets/heat_diffusion_recording.gif)
-
 Simulate heat diffusion in real time on addressable LEDs.
+![](assets/heat_diffusion_recording.gif)
+![](assets/heat_diffusion_animation.gif)
 
 For running the program, the following hardware components are required:
 * An Arduino microcontroller, e.g., Arduino UNO
