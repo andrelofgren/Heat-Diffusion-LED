@@ -1,4 +1,4 @@
-# Heat-Diffusion-On-LEDs
+# Heat-Diffusion-On-Addressable-RGBs
 ![](assets/heat_diffusion_recording.gif)
 ![](assets/heat_diffusion_animation.gif)
 
